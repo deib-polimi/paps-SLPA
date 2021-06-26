@@ -1,0 +1,6 @@
+.dockerignore
+Dockerfile
+README.md
+*.out
+*.iml
+.idea/
