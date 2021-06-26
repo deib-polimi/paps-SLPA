@@ -1,6 +1,5 @@
 package restserver.partition;
 
-import io.kubernetes.client.openapi.models.V1Node;
 import restserver.partitiondata.Host;
 
 import java.util.ArrayList;

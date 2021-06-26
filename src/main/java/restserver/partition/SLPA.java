@@ -1,7 +1,6 @@
 package restserver.partition;
 
 
-import io.kubernetes.client.openapi.ApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import restserver.partitiondata.DelayMatrix;
@@ -17,13 +16,13 @@ public class SLPA {
     private static final Logger logger = LoggerFactory.getLogger(SLPA.class);
 
     // constructor
-    public SLPA(PartitionData data) throws ApiException, RuntimeException {
+    public SLPA(PartitionData data) throws RuntimeException {
         this.data = data;
         createTopologyNodesList(data.getHosts());
         computeTopologyMatrix(data.getMatrix(), data.getParameters().getDelayThreshold());
     }
 
-    private void createTopologyNodesList(List<Host> hosts) throws ApiException{
+    private void createTopologyNodesList(List<Host> hosts) {
         topologyNodes = new LinkedList<>();
 
         for(Host host : hosts){

@@ -1,9 +1,5 @@
 package restserver.partition;
 
-import io.kubernetes.client.openapi.ApiException;
-import io.kubernetes.client.openapi.models.V1Node;
-import io.kubernetes.client.openapi.models.V1ObjectMeta;
-import restserver.kubeapi.KubernetesApi;
 import restserver.partitiondata.Host;
 
 import java.util.LinkedList;
