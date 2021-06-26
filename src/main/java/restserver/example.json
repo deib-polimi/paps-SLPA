@@ -1,0 +1,43 @@
+{
+  "parameters": {
+    "nodes": 3,
+    "delay-threshold": 0.2,
+    "iterations": 20,
+    "probability-threshold": 0.3
+  },
+  "hosts": [
+    {
+      "name": "node-1",
+      "memory": 12.0,
+      "labels": {}
+    },
+    {
+      "name": "node-2",
+      "memory": 13.0,
+      "labels": {}
+    },
+    {
+      "name": "node-3",
+      "memory": 14.0,
+      "labels": {}
+    },
+    {
+      "name": "node-4",
+      "memory": 15.0,
+      "labels": {}
+    },
+    {
+      "name": "node-5",
+      "memory": 16.0,
+      "labels": {}
+    }
+  ],
+  "delay-matrix": {
+    "routes": [
+      [0.0, 0.1, 0.2, 0.2, 0.1],
+      [0.1, 0.0, 0.3, 0.2, 0.1],
+      [0.2, 0.3, 0.0, 0.1, 0.2],
+      [0.2, 0.2, 0.1, 0.0, 0.1],
+      [0.1, 0.1, 0.2, 0.1, 0.0]]
+  }
+}
