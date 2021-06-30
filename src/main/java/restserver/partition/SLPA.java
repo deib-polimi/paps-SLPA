@@ -19,7 +19,7 @@ public class SLPA {
     public SLPA(PartitionData data) throws RuntimeException {
         this.data = data;
         createTopologyNodesList(data.getHosts());
-        computeTopologyMatrix(data.getMatrix(), data.getParameters().getDelayThreshold());
+        computeTopologyMatrix(data.getMatrix(), data.getParameters().getMaximumDelay());
     }
 
     private void createTopologyNodesList(List<Host> hosts) {
@@ -30,15 +30,16 @@ public class SLPA {
         }
     }
 
-    private void computeTopologyMatrix(DelayMatrix delayMatrix, float delayThreshold){
+    private void computeTopologyMatrix(DelayMatrix delayMatrix, float maximumDelay){
         for (int i = 0; i < delayMatrix.getRoutes().length ; i++) {
             for (int j = i; j < delayMatrix.getRoutes()[i].length; j++) {
-                if (i !=j && delayMatrix.getRoutes()[i][j] < delayThreshold){
+                if (i !=j && delayMatrix.getRoutes()[i][j] < maximumDelay){
                     topologyNodes.get(i).addNearbyNode(topologyNodes.get(j));
                     topologyNodes.get(j).addNearbyNode(topologyNodes.get(i));
                 }
             }
         }
+        logger.info("build topology matrix");
     }
 
     // function used to create and set up Kubernetes communities, returns a list with all the communities created.
@@ -60,7 +61,7 @@ public class SLPA {
                 List<String> receivedLabels = new ArrayList<>(speakers.size());
 
                 if (speakers.isEmpty()){
-                    throw new NullPointerException("This listener has no nearby nodes, speaker list is empty");
+                    logger.error("Listener: {} has no nearby nodes, speaker list is empty", listener.getHostName());
                 }
 
                 Collections.shuffle(speakers);      // shuffle the list to better spread labels
@@ -84,7 +85,8 @@ public class SLPA {
             List<String> candidates = communityCandidates.stream().toList();
 
             if (communityCandidates.isEmpty()) {
-                throw new NullPointerException("The node doesn't belong to any community");
+                logger.error("Node: {} does not belong to any community", node.getHostName());
+
             }
 
             String communitySelected = candidates.get(0);

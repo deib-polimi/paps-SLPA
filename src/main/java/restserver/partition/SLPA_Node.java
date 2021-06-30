@@ -87,6 +87,7 @@ public class SLPA_Node {
             }
         }
 
+        assert max != null;
         return max.getKey();
     }
 }

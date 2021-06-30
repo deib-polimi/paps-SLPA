@@ -7,8 +7,9 @@ import java.util.List;
 
 public class Community {
 
-    private final static String ROLE_KEY= "role";
-    private final static String COMMUNITY_KEY= "community";
+    private static final String ROLE_KEY= "edgeautoscaler.polimi.it/role";
+
+    private static final String COMMUNITY_KEY= "community";
 
     private String name;
 
@@ -35,14 +36,14 @@ public class Community {
         if (members.contains(node)) throw new RuntimeException("This member is already present in the community");
         members.add(node);
         setRoleLabel(node, Role.LEADER);
-        setCommunityLabel(node);
+//        setCommunityLabel(node);
     }
 
     public void addMember(Host member){
         if (members.contains(member)) throw new RuntimeException("This member is already present in the community");
         members.add(member);
         setRoleLabel(member, Role.MEMBER);
-        setCommunityLabel(member);
+//        setCommunityLabel(member);
     }
 
     private void setRoleLabel(Host node, Role role){

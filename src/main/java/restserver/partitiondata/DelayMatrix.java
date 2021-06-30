@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 public class DelayMatrix {
 
     @SerializedName("routes")
-    private final float[][] routes;
+    private final int[][] routes;
 
-    public DelayMatrix(float[][] routes) {
+    public DelayMatrix(int[][] routes) {
         this.routes = routes;
     }
 
-    public float[][] getRoutes() {
+    public int[][] getRoutes() {
         return routes;
     }
 }

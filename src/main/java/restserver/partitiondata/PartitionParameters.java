@@ -3,19 +3,20 @@ package restserver.partitiondata;
 import com.google.gson.annotations.SerializedName;
 
 public class PartitionParameters {
+    @SerializedName("community-size")
     private final int nodes;
     private final int iterations;
 
-    @SerializedName("delay-threshold")
-    private final float delayThreshold;
+    @SerializedName("maximum-delay")
+    private final int maximumDelay;
 
     @SerializedName("probability-threshold")
-    private final float probabilityThreshold;
+    private final int probabilityThreshold;
 
-    public PartitionParameters(int nodes, int iterations, float delayThreshold, int probabilityThreshold) {
+    public PartitionParameters(int nodes, int iterations, int delayThreshold, int probabilityThreshold) {
         this.nodes = nodes;
         this.iterations = iterations;
-        this.delayThreshold = delayThreshold;
+        this.maximumDelay = delayThreshold;
         this.probabilityThreshold = probabilityThreshold;
     }
 
@@ -27,11 +28,11 @@ public class PartitionParameters {
         return iterations;
     }
 
-    public float getDelayThreshold() {
-        return delayThreshold;
+    public int getMaximumDelay() {
+        return maximumDelay;
     }
 
     public float getProbabilityThreshold() {
-        return probabilityThreshold;
+        return (float)probabilityThreshold / 100;
     }
 }
