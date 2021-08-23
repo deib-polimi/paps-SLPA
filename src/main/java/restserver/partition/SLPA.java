@@ -39,7 +39,6 @@ public class SLPA {
                 }
             }
         }
-        logger.info("build topology matrix");
     }
 
     // function used to create and set up Kubernetes communities, returns a list with all the communities created.
@@ -61,6 +60,7 @@ public class SLPA {
                 List<String> receivedLabels = new ArrayList<>(speakers.size());
 
                 if (speakers.isEmpty()){
+                    // TODO: handle when a node is alone. 1) community composed by one node?
                     logger.error("Listener: {} has no nearby nodes, speaker list is empty", listener.getHostName());
                 }
 
@@ -85,15 +85,18 @@ public class SLPA {
             List<String> candidates = communityCandidates.stream().toList();
 
             if (communityCandidates.isEmpty()) {
+                // TODO: this should never happen
                 logger.error("Node: {} does not belong to any community", node.getHostName());
-
             }
 
             String communitySelected = candidates.get(0);
             Community selectedCommunity = communityBuilder.getCommunity(communitySelected);
 
-            String nodeId = node.getHostName().split("-")[1];
-            String communityId = communitySelected.split("-")[1];
+            List<String> nodeName = Arrays.stream(node.getHostName().split("-")).toList();
+            String nodeId = nodeName.get(nodeName.size() - 1);
+
+            List<String> communityName = Arrays.stream(communitySelected.split("-")).toList();
+            String communityId = communityName.get(communityName.size() - 1);
 
             if (nodeId.equals(communityId)){
                 selectedCommunity.addLeader(node.getHost());
