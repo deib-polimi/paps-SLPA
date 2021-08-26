@@ -3,6 +3,7 @@ package restserver;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import restserver.ordering.Utils;
 import restserver.partition.Community;
 import restserver.partition.SLPA;
 import restserver.partition.SLPA_Node;
@@ -34,6 +35,7 @@ public class PartitionRoute {
 
             PartitionParameters parameters = data.getParameters();
             List<Community> communities = slpa.computeCommunities(parameters.getIterations(), parameters.getProbabilityThreshold());
+            communities = Utils.orderCommunities(communities);
             return new Gson().toJson(new PartitionResult(communities), PartitionResult.class);
         });
     }

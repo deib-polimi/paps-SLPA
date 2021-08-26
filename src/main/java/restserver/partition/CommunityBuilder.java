@@ -2,10 +2,7 @@ package restserver.partition;
 
 import restserver.partitiondata.Host;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CommunityBuilder {
 
@@ -46,7 +43,8 @@ public class CommunityBuilder {
             Community selected = communities.get(i%nOfCommunities);
             if ( i < nOfCommunities){
                 Host leader = allMembers.get(i);
-                String leaderId = leader.getName().split("-")[1];
+                List<String> leaderName =  Arrays.stream(leader.getName().split("-")).toList();
+                String leaderId = leaderName.get(leaderName.size() - 1);
                 selected.setName("community-" + leaderId);
                 addLeader(selected,  leader);
             }
