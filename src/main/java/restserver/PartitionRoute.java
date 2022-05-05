@@ -6,8 +6,6 @@ import org.slf4j.LoggerFactory;
 import restserver.ordering.Utils;
 import restserver.partition.Community;
 import restserver.partition.SLPA;
-import restserver.partition.SLPA_Node;
-import restserver.partitiondata.Host;
 import restserver.partitiondata.PartitionData;
 import restserver.partitiondata.PartitionParameters;
 import restserver.partitiondata.PartitionResult;
