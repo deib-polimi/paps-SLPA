@@ -11,7 +11,7 @@ import java.util.*;
 public class SLPA {
 
     private final PartitionData data;
-    private List<SLPA_Node> topologyNodes; // list of all tje nodes present in the topology
+    private List<SLPA_Node> topologyNodes; // list of all the nodes present in the topology
     private static final Logger logger = LoggerFactory.getLogger(SLPA.class);
 
     // constructor
@@ -55,7 +55,7 @@ public class SLPA {
                 List<String> nodeName = Arrays.stream(node.getHostName().split("-")).toList();
                 String nodeId = nodeName.get(nodeName.size() - 1);
 
-                if (nodeId.equals(0)) {
+                if (nodeId.equals("0")) {
                     selectedCommunity.addLeader(node.getHost());
                 } else {
                     selectedCommunity.addMember(node.getHost());

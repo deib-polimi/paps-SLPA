@@ -33,7 +33,9 @@ public class PartitionRoute {
 
             PartitionParameters parameters = data.getParameters();
             List<Community> communities = slpa.computeCommunities(parameters.getIterations(), parameters.getProbabilityThreshold());
-            communities = Utils.orderCommunities(communities);
+
+            if (communities.size() > 1) communities = Utils.orderCommunities(communities);
+
             return new Gson().toJson(new PartitionResult(communities), PartitionResult.class);
         });
     }
