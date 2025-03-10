@@ -1,0 +1,38 @@
+{
+  "parameters": {
+    "community-size": 3,
+    "maximum-delay": 20,
+    "iterations": 20,
+    "probability-threshold": 30
+  },
+  "hosts": [
+    {
+      "name": "node-1",
+      "labels": {}
+    },
+    {
+      "name": "node-2",
+      "labels": {}
+    },
+    {
+      "name": "node-3",
+      "labels": {}
+    },
+    {
+      "name": "node-4",
+      "labels": {}
+    },
+    {
+      "name": "node-5",
+      "labels": {}
+    }
+  ],
+  "delay-matrix": {
+    "routes": [
+      [0, 1, 2, 2, 1],
+      [1, 0, 3, 2, 1],
+      [2, 3, 0, 1, 2],
+      [2, 2, 1, 0, 1],
+      [1, 1, 2, 1, 0]]
+  }
+}
